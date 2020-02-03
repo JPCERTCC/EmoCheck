@@ -1,3 +1,8 @@
+/**
+ * LICENSE
+ * Please reffer to the LICENSE.txt in the https://github.com/JPCERTCC/EmoCheck/
+ */
+
 #ifndef EMOCHECK_EMOCHECK_H_
 #define EMOCHECK_EMOCHECK_H_
 

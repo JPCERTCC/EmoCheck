@@ -1,6 +1,6 @@
 ﻿/**
- * @file   emocheck.cpp
- * @author t-tani (JPCERT/CC)
+ * LICENSE
+ * Please reffer to the LICENSE.txt in the https://github.com/JPCERTCC/EmoCheck/
  */
 
 #include "emocheck.h"

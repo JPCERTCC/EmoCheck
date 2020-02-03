@@ -1,5 +1,6 @@
 /**
- * @file   main.cpp
+ * LICENSE
+ * Please reffer to the LICENSE.txt in the https://github.com/JPCERTCC/EmoCheck/
  */
 
 // emocheck module
