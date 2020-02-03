@@ -4,7 +4,7 @@ Emotet detection tool for Windows OS.
 
 ## How to use
 
-1. Download EmoCheck from Releases page.
+1. Download EmoCheck from the Releases page.
 2. Run EmoCheck on the host.
 3. Check the exported report.
 
@@ -22,8 +22,8 @@ Please download from [Releases](https://github.com/JPCERTCC/EmoCheck/releases) p
 
 ## How EmoCheck detects Emotet
 
-Emotet generetes their process name from specific word dictionary and C dirves serial.
-EmoCheck scan the running process on the host, and find Emotet process from their process name.
+Emotet generates their process name from a specific word dictionary and C drive serial.
+EmoCheck scans the running process on the host, and find Emotet process from their process name.
 
 ## Sample Report
 
