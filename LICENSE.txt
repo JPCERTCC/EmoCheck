@@ -1,5 +1,5 @@
 LICENSE
-Copyright (C) 2015 JPCERT Coordination Center. All Rights Reserved.
+Copyright (C) 2020 JPCERT Coordination Center. All Rights Reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -9,7 +9,7 @@ modification, are permitted provided that the following conditions are met:
 3. Products derived from this software may not include "JPCERT Coordination Center" in the name of such derived product, nor shall "JPCERT Coordination Center"  be used to endorse or promote products derived from this software without prior written permission. For written permission, please contact pr@jpcert.or.jp.
 
 ACKNOWLEDGMENTS AND DISCLAIMERS
-Copyright (C) 2015 JPCERT Coordination Center
+Copyright (C) 2020 JPCERT Coordination Center
 
 This software is based upon work funded and supported by the Ministry of
 Economy, Trade and Industry.
