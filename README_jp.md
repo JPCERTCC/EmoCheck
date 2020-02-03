@@ -43,7 +43,7 @@ Emotetを検知しました
 [詳細]
      プロセス名    : khmerbid.exe
      プロセスID    : 6132
-     イメージパス  : C:\Users\tani\AppData\Local\khmerbid.exe
+     イメージパス  : C:\Users\[username]\AppData\Local\khmerbid.exe
 ____________________________________________________
 
 イメージパスの実行ファイルを隔離/削除してください。

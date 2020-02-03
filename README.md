@@ -38,7 +38,7 @@ Detected Emotet process.
 [Emotet Process] 
      Process Name  : khmerbid.exe
      Process ID    : 10508
-     Image Path    : C:\Users\tani\AppData\Local\khmerbid.exe
+     Image Path    : C:\Users\[username]\AppData\Local\khmerbid.exe
 ____________________________________________________
 
 Please remove or isolate the suspicious execution file.
