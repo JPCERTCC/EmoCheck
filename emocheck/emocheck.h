@@ -1,4 +1,4 @@
-/**
+/*
  * LICENSE
  * Please reffer to the LICENSE.txt in the https://github.com/JPCERTCC/EmoCheck/
  */
@@ -11,8 +11,8 @@
 
 namespace emocheck {
 
-static char EMOCHECK_VERSION[] = "0.0.1";
-static char EMOCHECK_RELEASE_DATE[] = "2020/02/03";
+static char EMOCHECK_VERSION[] = "0.0.2";
+static char EMOCHECK_RELEASE_DATE[] = "2020/02/10";
 static char EMOCHECK_URL[] = "https://github.com/JPCERTCC/EmoCheck";
 static char LINE_DELIMITER[] =
     "____________________________________________________\n";
@@ -25,7 +25,8 @@ struct EmotetProcess {
     std::string image_path;
 };
 
-std::vector<EmotetProcess> ScanEmotet();
+std::string WideCharToString(wchar_t *wide_char);
+std::vector<EmotetProcess> ScanEmotet(bool);
 
 }  //namespace emocheck
 

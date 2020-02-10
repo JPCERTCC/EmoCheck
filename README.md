@@ -1,5 +1,8 @@
 # EmoCheck
 
+[![GitHub release](https://img.shields.io/github/release/jpcertcc/emocheck.svg)](https://github.com/jpcertcc/emocheck/releases)
+[![Github All Releases](https://img.shields.io/github/downloads/jpcertcc/emocheck/total.svg)](http://www.somsubhra.com/github-release-stats/?username=jpcertcc&repository=emocheck)
+
 Emotet detection tool for Windows OS.
 
 ## How to use
@@ -10,47 +13,103 @@ Emotet detection tool for Windows OS.
 
 ## Download
 
-Please download from [Releases](https://github.com/JPCERTCC/EmoCheck/releases) page.
+Please download from the [Releases](https://github.com/JPCERTCC/EmoCheck/releases) page.
+
+Latest hash:  
 
 > emocheck_x86.exe  
->   MD5   : 9508DACDF443B422D159160E02043045  
->   SHA256: 3F9BEFD9287923A844FA7F38DEADFE2238380398E1F4F4C902A18CD4CCF1BFA0  
+>   MD5   : 89863A79D531E2730D450F2D1C99EB6C  
+>   SHA256: 5A459538DE0A5B1C270C0617191A71D23EA6C705650761EF9B7095A736AF7301  
 
 > emocheck_x64.exe  
->   MD5   : 9E1B8BE8402A51B8FEE0B590B4965060  
->   SHA256: C8CC438BF271DFAA110C58C748C54175823269DA7202EA19FC75EEEA359FAEB5  
+>   MD5   : 94005A6447CA810619FF24D67EF67A93  
+>   SHA256: 65838C35D03FE36E9DBA1408E2278F8BC282B1319FEFAABEE4491B45E1254163  
+
+## Command options
+
+(since v0.0.2)  
+
+- Specify output directory for the report (default: current directory)
+  - `/output [your output directory]` or `-output [your output directory]`
+- No console output
+  - `/quiet` or `-quiet`
+- Export the report in JSON style
+  - `/json` or `-json`
+- Debug mode (no report)
+  - `/debug` or `-debug`
+- Show help
+  - `/help` or `-help`
 
 ## How EmoCheck detects Emotet
 
-Emotet generates their process name from a specific word dictionary and C drive serial.
+(v0.0.1)  
+Emotet generates their process name from a specific word dictionary and C drive serial number.
 EmoCheck scans the running process on the host, and find Emotet process from their process name.
+
+(added in v0.0.2)  
+Emotet keeps their encoded process name in a specific registry key.
+EmoCheck looks up and decode the registry value, and find it from the process list.  
 
 ## Sample Report
 
+Text stlye:  
+
 ```txt
-[Emocheck v0.0.1]
-Scan time: 2020-02-03 13:06:20
+[Emocheck v0.0.2]
+Scan time: 2020-02-10 13:06:20
 ____________________________________________________
 
-[Result] 
+[Result]
 Detected Emotet process.
 
-[Emotet Process] 
-     Process Name  : khmerbid.exe
-     Process ID    : 10508
-     Image Path    : C:\Users\[username]\AppData\Local\khmerbid.exe
+[Emotet Process]
+     Process Name  : mstask.exe
+     Process ID    : 716
+     Image Path    : C:\Users\[username]\AppData\Local\mstask.exe
 ____________________________________________________
 
 Please remove or isolate the suspicious execution file.
 ```
 
+JSON style (added in v0.0.2):  
+
+```json
+{
+  "scan_time":"2020-02-10 13:06:20",
+  "hostname":"[your hostname]",
+  "emocheck_version":"0.0.2",
+  "is_infected":"yes",
+  "emotet_processes":[
+    {
+       "process_name":"mstask.exe",
+       "process_id":"716",
+       "image_path":"C:\\Users\\[username]\\AppData\\Local\\mstask.exe"
+    }
+  ]
+}
+```
+
 The report will be exported to the following path.
 
-- [path of emocheck.exe]\yyyymmddhhmmss_emocheck.txt
+(v0.0.1)  
+`[current directory]\yyyymmddhhmmss_emocheck.txt`
+
+(since v0.0.2)  
+`[output path]\[computer name]_yyyymmddhhmmss_emocheck.txt`  
+`[output path]\[computer name]_yyyymmddhhmmss_emocheck.json`
 
 ## Screenshot
 
+(v0.0.1)  
 <div align="left"><img src="./img/report_en.png"></div>
+
+## Releases
+
+- (Feb. 3, 2020) v0.0.1
+  - Initial release
+- (Feb. 10, 2020) v0.0.2
+  - update detecting method
+  - add options
 
 ## Notes
 
