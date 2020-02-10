@@ -1,6 +1,6 @@
 /**
  * LICENSE
- * Please reffer to the LICENSE.txt in the https://github.com/JPCERTCC/EmoCheck/
+ * Please refer to the LICENSE.txt at https://github.com/JPCERTCC/EmoCheck/
  */
 
 // emocheck module
@@ -81,7 +81,7 @@ void PrintReport(std::vector<EmotetProcess> emotet_processes)
                           << "     Image Path  : " << emotet_processes[i].image_path.c_str() << std::endl;
             }
             std::cout << LINE_DELIMITER << std::endl;
-            std::cout << "Emotet had be detected.\n"
+            std::cout << "Emotet was detected.\n"
                       << "Please remove or isolate the suspicious execution file.\n"
                       << std::endl;
         }
@@ -91,7 +91,6 @@ void PrintReport(std::vector<EmotetProcess> emotet_processes)
                       << std::endl;
         }
     }
-    return;
 }
 
 void WriteReport(std::vector<EmotetProcess> emotet_processes)
@@ -164,7 +163,7 @@ void WriteReport(std::vector<EmotetProcess> emotet_processes)
         }
         else
         {
-            outputfile << "[Result] \nNo detection." << std::endl;
+            outputfile << "[Result] \nEmotet was not detected." << std::endl;
         }
         outputfile.close();
         std::cout << "Report has exported to following file." << std::endl;
@@ -173,7 +172,6 @@ void WriteReport(std::vector<EmotetProcess> emotet_processes)
         std::cout << "Thank you for using our tool.\n"
                   << std::endl;
     }
-    return;
 }
 
 } // namespace emocheck
@@ -187,7 +185,8 @@ int main()
     emocheck::PrintReport(scan_result);
     emocheck::WriteReport(scan_result);
 
-    system("pause");
-
-    return 0;
+    if (scan_result.empty())
+        return 0;
+    else
+        return 1;
 }
