@@ -26,7 +26,7 @@ struct EmotetProcess {
 };
 
 std::string WideCharToString(wchar_t *wide_char);
-std::vector<EmotetProcess> ScanEmotet(bool);
+std::tuple<int,std::vector<EmotetProcess>> ScanEmotet(bool);
 
 }  //namespace emocheck
 
