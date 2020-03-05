@@ -1,6 +1,6 @@
 /*
  * LICENSE
- * Please reffer to the LICENSE.txt in the https://github.com/JPCERTCC/EmoCheck/
+ * Please refer to the LICENSE.txt at https://github.com/JPCERTCC/EmoCheck/
  */
 
 #ifndef EMOCHECK_EMOCHECK_H_
