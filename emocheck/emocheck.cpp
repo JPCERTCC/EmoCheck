@@ -1,4 +1,4 @@
-﻿/*
+/*
  * LICENSE
  * Please reffer to the LICENSE.txt in the https://github.com/JPCERTCC/EmoCheck/
  */

@@ -8,6 +8,8 @@
 
 // standard module
 #include <vector>
+#include <tuple>
+#include <string>
 
 namespace emocheck {
 
