@@ -1,6 +1,6 @@
 /*
  * LICENSE
- * Please reffer to the LICENSE.txt in the https://github.com/JPCERTCC/EmoCheck/
+ * Please refer to the LICENSE.txt at https://github.com/JPCERTCC/EmoCheck/
  */
 
 // emocheck module
@@ -11,6 +11,8 @@
 #include <fstream>
 #include <iostream>
 #include <vector>
+#include <tuple>
+#include <ctime>
 
 // windows basic module
 #include <windows.h>
@@ -108,7 +110,7 @@ void PrintReport(std::vector<EmotetProcess> emotet_processes) {
                           << "     Image Path  : " << emotet_processes[i].image_path << std::endl;
             }
             std::cout << LINE_DELIMITER << std::endl;
-            std::cout << "Emotet had been detected.\n"
+            std::cout << "Emotet was detected.\n"
                       << "Please remove or isolate the suspicious execution file.\n"
                       << std::endl;
         } else {
@@ -116,7 +118,6 @@ void PrintReport(std::vector<EmotetProcess> emotet_processes) {
                       << std::endl;
         }
     }
-    return;
 }
 
 void WriteReport(std::vector<EmotetProcess> emotet_processes, bool is_quiet, std::string output_path) {
@@ -195,8 +196,10 @@ void WriteReport(std::vector<EmotetProcess> emotet_processes, bool is_quiet, std
             }
             outputfile << LINE_DELIMITER << std::endl;
             outputfile << "Please remove or isolate the suspicious execution file." << std::endl;
-        } else {
-            outputfile << "[Result] \nNo detection." << std::endl;
+        }
+        else
+        {
+            outputfile << "[Result] \nEmotet was not detected." << std::endl;
         }
         outputfile.close();
         if (!is_quiet) {
@@ -207,7 +210,6 @@ void WriteReport(std::vector<EmotetProcess> emotet_processes, bool is_quiet, std
                       << std::endl;
         }
     }
-    return;
 }
 
 std::string EscapeBackSlash(std::string s) {
@@ -300,15 +302,16 @@ int main(int argc, char *argv[]) {
     bool is_debug = false;
     bool is_quiet = false;
     bool is_json = false;
+    int status;
     std::string output_path = ".";
 
     if (argc < 2) {
         emocheck::PrintBanner();
-        scan_result = emocheck::ScanEmotet(is_debug);
+        std::tie(status,scan_result) = emocheck::ScanEmotet(is_debug);
         emocheck::PrintReport(scan_result);
         emocheck::WriteReport(scan_result, is_quiet, output_path);
         system("pause");
-        return 0;
+        return status;
     }
 
     // Parse parameters
@@ -349,7 +352,7 @@ int main(int argc, char *argv[]) {
     if (!is_quiet) {
         emocheck::PrintBanner();
     }
-    scan_result = emocheck::ScanEmotet(is_debug);
+    std::tie(status,scan_result) = emocheck::ScanEmotet(is_debug);
     if (!is_quiet) {
         emocheck::PrintReport(scan_result);
     }
@@ -363,5 +366,5 @@ int main(int argc, char *argv[]) {
     if (!is_quiet) {
         system("pause");
     }
-    return 0;
+    return status;
 }

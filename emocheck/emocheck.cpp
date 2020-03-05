@@ -1,4 +1,4 @@
-﻿/*
+/*
  * LICENSE
  * Please reffer to the LICENSE.txt in the https://github.com/JPCERTCC/EmoCheck/
  */
@@ -10,6 +10,7 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include <tuple>
 
 // windows basic modules
 #include <Windows.h>
@@ -298,11 +299,14 @@ std::vector<EmotetProcess> ScanEmotetProcess(std::vector<std::string> keywords) 
     return emotet_processes;
 }
 
-std::vector<EmotetProcess> ScanEmotet(bool debug) {
+std::tuple<int,std::vector<EmotetProcess>> ScanEmotet(bool debug) {
     std::vector<std::string> filenames;
     std::string emotet_process_name;
     std::vector<std::string> emotet_process_names;
     std::vector<EmotetProcess> emotet_processes;
+    static const int NOT_INFECTED = 0;
+    static const int INFECTED = 1;
+    int is_infected; 
 
     is_debug = debug;
 
@@ -331,7 +335,13 @@ std::vector<EmotetProcess> ScanEmotet(bool debug) {
         std::cout << std::endl;
     }
     emotet_processes = ScanEmotetProcess(emotet_process_names);
-    return emotet_processes;
+
+    if (emotet_processes.empty()){
+        is_infected = NOT_INFECTED;
+    } else {
+        is_infected = INFECTED;
+    }
+    return std::forward_as_tuple(is_infected,emotet_processes);
 }
 
 }  // namespace emocheck
