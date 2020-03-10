@@ -17,13 +17,15 @@ Please download from the [Releases](https://github.com/JPCERTCC/EmoCheck/release
 
 Latest hash:  
 
-> emocheck_x86.exe  
->   MD5   : 89863A79D531E2730D450F2D1C99EB6C  
->   SHA256: 5A459538DE0A5B1C270C0617191A71D23EA6C705650761EF9B7095A736AF7301  
+__The following released files have code signing with Microsoft Authenticode.__
 
-> emocheck_x64.exe  
->   MD5   : 94005A6447CA810619FF24D67EF67A93  
->   SHA256: 65838C35D03FE36E9DBA1408E2278F8BC282B1319FEFAABEE4491B45E1254163  
+> emocheck_x86_signed.exe  
+>   MD5   : 7b48be91855af1c1cee55c2b4aa6005d  
+>   SHA256: 4c39ef11ade2e99eaefe37b6549e96108fd19f4152a55059a9e04a7dd13ad989  
+
+> emocheck_x64_signed.exe  
+>   MD5   : 4739c25603fab312ab89508920039806  
+>   SHA256: fe07c8f02ff713d3e6cfa7f515b22da2b06cde8c6598639e1cb25c3a49ad9e86  
 
 ## Command options
 
