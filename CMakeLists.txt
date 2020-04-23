@@ -8,14 +8,36 @@ add_definitions(/D _UNICODE)
 # add_definitions(/utf-8)
 
 # header files
+set(utils_hdrs
+        emocheck/utils/utils.hpp
+)
+
+set(modules_hdrs
+        emocheck/modules/scan_v1.hpp
+        emocheck/modules/scan_v2.hpp
+)
+
 set(hdrs
-       emocheck/emocheck.h
+       emocheck/emocheck.hpp
+       ${utils_hdrs}
+       ${modules_hdrs}
 )
 
 # source files
+set(utils_srcs
+        emocheck/utils/utils.cpp
+)
+
+set(modules_srcs
+        emocheck/modules/scan_v1.cpp
+        emocheck/modules/scan_v2.cpp
+)
+
 set(srcs
         emocheck/emocheck.cpp
         emocheck/main.cpp
+        ${utils_srcs}
+        ${modules_srcs}
 )
 
 SOURCE_GROUP("Source Files\\emocheck" FILES ${srcs} )

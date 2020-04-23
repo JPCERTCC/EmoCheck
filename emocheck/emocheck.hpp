@@ -7,13 +7,13 @@
 #define EMOCHECK_EMOCHECK_H_
 
 // standard module
-#include <vector>
-#include <tuple>
 #include <string>
+#include <tuple>
+#include <vector>
 
 namespace emocheck {
 
-static char EMOCHECK_VERSION[] = "0.0.2";
+static char EMOCHECK_VERSION[] = "1.2";
 static char EMOCHECK_RELEASE_DATE[] = "2020/02/10";
 static char EMOCHECK_URL[] = "https://github.com/JPCERTCC/EmoCheck";
 static char LINE_DELIMITER[] =
@@ -27,8 +27,7 @@ struct EmotetProcess {
     std::string image_path;
 };
 
-std::string WideCharToString(wchar_t *wide_char);
-std::tuple<int,std::vector<EmotetProcess>> ScanEmotet(bool);
+std::tuple<int, std::vector<EmotetProcess>> ScanEmotet(bool);
 
 }  //namespace emocheck
 

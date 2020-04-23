@@ -4,15 +4,16 @@
  */
 
 // emocheck module
-#include "emocheck.h"
+#include "emocheck.hpp"
+#include "utils/utils.hpp"
 
 // standard modules
+#include <ctime>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
-#include <vector>
 #include <tuple>
-#include <ctime>
+#include <vector>
 
 // windows basic module
 #include <windows.h>
@@ -196,9 +197,7 @@ void WriteReport(std::vector<EmotetProcess> emotet_processes, bool is_quiet, std
             }
             outputfile << LINE_DELIMITER << std::endl;
             outputfile << "Please remove or isolate the suspicious execution file." << std::endl;
-        }
-        else
-        {
+        } else {
             outputfile << "[Result] \nEmotet was not detected." << std::endl;
         }
         outputfile.close();
@@ -307,7 +306,7 @@ int main(int argc, char *argv[]) {
 
     if (argc < 2) {
         emocheck::PrintBanner();
-        std::tie(status,scan_result) = emocheck::ScanEmotet(is_debug);
+        std::tie(status, scan_result) = emocheck::ScanEmotet(is_debug);
         emocheck::PrintReport(scan_result);
         emocheck::WriteReport(scan_result, is_quiet, output_path);
         system("pause");
@@ -352,7 +351,7 @@ int main(int argc, char *argv[]) {
     if (!is_quiet) {
         emocheck::PrintBanner();
     }
-    std::tie(status,scan_result) = emocheck::ScanEmotet(is_debug);
+    std::tie(status, scan_result) = emocheck::ScanEmotet(is_debug);
     if (!is_quiet) {
         emocheck::PrintReport(scan_result);
     }
