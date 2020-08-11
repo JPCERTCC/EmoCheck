@@ -17,15 +17,13 @@ Please download from the [Releases](https://github.com/JPCERTCC/EmoCheck/release
 
 Latest hash:  
 
-__The following released files have code signing with Microsoft Authenticode.__
+> emocheck_v1.0_x86.exe
+>   MD5   : 00f7612ff7e571115638206dd5b32f2c
+>   SHA256: 544b6eb3bc04e9015ae7b4078e20a33a28c35370fb9e2c498d65e072c4c81bf3
 
-> emocheck_x86_signed.exe  
->   MD5   : 7b48be91855af1c1cee55c2b4aa6005d  
->   SHA256: 4c39ef11ade2e99eaefe37b6549e96108fd19f4152a55059a9e04a7dd13ad989  
-
-> emocheck_x64_signed.exe  
->   MD5   : 4739c25603fab312ab89508920039806  
->   SHA256: fe07c8f02ff713d3e6cfa7f515b22da2b06cde8c6598639e1cb25c3a49ad9e86  
+> emocheck_v1.0_x64.exe
+>   MD5   : 59ecb58b11c6df9324043fe4d2caf210
+>   SHA256: cb80892758754d12af2148bcffc32eae0daa02c4815415b394aff2d79e0b761b
 
 ## Command options
 
@@ -50,7 +48,12 @@ EmoCheck scans the running process on the host, and find Emotet process from the
 
 (added in v0.0.2)  
 Emotet keeps their encoded process name in a specific registry key.
-EmoCheck looks up and decode the registry value, and find it from the process list.  
+EmoCheck looks up and decode the registry value, and find it from the process list.
+Code Signing with Microsoft Authenticode.
+
+(added in v1.0)  
+Support the April 2020 updated of Emotet.  
+Obfuscated code.  
 
 ## Sample Report
 
@@ -112,6 +115,8 @@ The report will be exported to the following path.
 - (Feb. 10, 2020) v0.0.2
   - update detecting method
   - add options
+- (Aug. 11, 2020) v1.0.0
+  - update detecting method
 
 ## Notes
 
@@ -119,10 +124,17 @@ The report will be exported to the following path.
 
 - Windows 10 1809 64bit Japanese Edition
 - Windows 8.1 64bit Japanese Edition
-- Windows 7 SP1 32bit Japanese Edition
-- Windows 7 SP1 64bit Japanese Edition
+- ~~Windows 7 SP1 32bit Japanese Edition~~
+- ~~Windows 7 SP1 64bit Japanese Edition~~
+
+Windows 7 does not support UTF-8 output in the Command Prompt.
+
 
 ### Build
 
 - Windows 10 1809 64bit Japanese Edition
 - Microsoft Visual Studio Community 2017
+
+### Source code
+
+Not published from v1.0.

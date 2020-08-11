@@ -19,13 +19,13 @@ Windows OS 用 Emotet 検知ツール
 
 なお、ファイルのハッシュ値は以下の通りです。
 
-> emocheck_x86.exe  
->   MD5   : 89863A79D531E2730D450F2D1C99EB6C  
->   SHA256: 5A459538DE0A5B1C270C0617191A71D23EA6C705650761EF9B7095A736AF7301 
+> emocheck_v1.0_x86.exe
+>   MD5   : 00f7612ff7e571115638206dd5b32f2c
+>   SHA256: 544b6eb3bc04e9015ae7b4078e20a33a28c35370fb9e2c498d65e072c4c81bf3
 
-> emocheck_x64.exe  
->   MD5   : 94005A6447CA810619FF24D67EF67A93  
->   SHA256: 65838C35D03FE36E9DBA1408E2278F8BC282B1319FEFAABEE4491B45E1254163  
+> emocheck_v1.0_x64.exe
+>   MD5   : 59ecb58b11c6df9324043fe4d2caf210
+>   SHA256: cb80892758754d12af2148bcffc32eae0daa02c4815415b394aff2d79e0b761b
 
 ## コマンドオプション
 
@@ -109,6 +109,8 @@ Emotetが検知された場合、以下のようなレポートが作成され�
 - (2020/02/10) v0.0.2
   - 検知手法の追加
   - コマンドオプションの追加
+- (2020/08/11) v1.0.0
+  - 検知手法の追加
 
 ## その他
 
@@ -123,3 +125,7 @@ Emotetが検知された場合、以下のようなレポートが作成され�
 
 - Windows 10 1809 64bit 日本語版
 - Microsoft Visual Studio Community 2017
+
+### ソースコード
+
+v1.0は公開していません。
