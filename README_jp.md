@@ -1,7 +1,7 @@
 # EmoCheck
 
 [![GitHub release](https://img.shields.io/github/release/jpcertcc/emocheck.svg)](https://github.com/jpcertcc/emocheck/releases)
-[![Github All Releases](https://img.shields.io/github/downloads/jpcertcc/emocheck/total.svg)](http://www.somsubhra.com/github-release-stats/?username=jpcertcc&repository=emocheck)
+[![Github All Releases](https://img.shields.io/github/downloads/jpcertcc/emocheck/total.svg)](https://somsubhra.github.io/github-release-stats/?username=jpcertcc&repository=emocheck&page=1&per_page=5)
 
 Windows OS 用 Emotet 検知ツール
 
