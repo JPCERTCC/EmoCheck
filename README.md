@@ -17,13 +17,13 @@ Please download from the [Releases](https://github.com/JPCERTCC/EmoCheck/release
 
 Latest hash:  
 
-> emocheck_v1.0_x86.exe
->   MD5   : 00f7612ff7e571115638206dd5b32f2c
->   SHA256: 544b6eb3bc04e9015ae7b4078e20a33a28c35370fb9e2c498d65e072c4c81bf3
+> emocheck_v2.0_x86.exe
+>   MD5   : a623ec55128763ef3ee95c1ce18424dc
+>   SHA256: 369595afdb67bd54b4d0b5010cece75d80d660d7c7caaa49fdffa2e27f0274a0
 
-> emocheck_v1.0_x64.exe
->   MD5   : 59ecb58b11c6df9324043fe4d2caf210
->   SHA256: cb80892758754d12af2148bcffc32eae0daa02c4815415b394aff2d79e0b761b
+> emocheck_v2.0_x64.exe
+>   MD5   : 25bb801e219f82bad6f53d94edfc0ff6
+>   SHA256: e830d6b7f3b82747fc565d6eb7c12cf8b82454f1f735bde3e73d6f73a5819462
 
 ## Command options
 
@@ -54,6 +54,10 @@ Code Signing with Microsoft Authenticode.
 (added in v1.0)  
 Support the April 2020 updated of Emotet.  
 Obfuscated code.  
+
+(added in v2.0)  
+Support the December 2020 updated of Emotet.  
+French language support. (Thanks to CERT-FR)
 
 ## Sample Report
 
@@ -117,6 +121,9 @@ The report will be exported to the following path.
   - add options
 - (Aug. 11, 2020) v1.0.0
   - update detecting method
+- (Jan. 27, 2021) v2.0.0
+  - update detecting method
+  - Added French language support
 
 ## Notes
 
