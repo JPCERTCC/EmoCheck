@@ -5,18 +5,8 @@
 
 // emocheck module
 #include "emocheck.hpp"
+#include "utils/file.hpp"
 #include "utils/utils.hpp"
-
-// standard modules
-#include <ctime>
-#include <filesystem>
-#include <fstream>
-#include <iostream>
-#include <tuple>
-#include <vector>
-
-// windows basic module
-#include <windows.h>
 
 // defines
 #define PARAM_SWITCH1 '/'
@@ -63,13 +53,22 @@ void PrintBanner() {
 }
 
 void PrintHelp() {
-    if (GetUserDefaultLangID() == LANG_ID_JP) {
+    if (GetUserDefaultLangID() == LANG_ID_JP && !IsWindows7()) {
+        SetConsoleOutputCP(CP_UTF8);
         // Japanese help
         std::cout << "[オプション説明]\n"
                   << "コマンドラインの出力抑止:\n\t /quiet  または -quiet\n"
                   << "JSON形式でのレポート出力:\n\t /json  または -json\n"
                   << "レポート出力先ディレクトリ指定 (デフォルト カレントディレクトリ):\n\t /output [出力先ディレクトリ] または -output [出力先ディレクトリ]\n"
-                  << "詳細表示:\n\t/debug または -debug" << std::endl;
+                  << std::endl;
+    } else if (GetUserDefaultLangID() == LANG_ID_FR && !IsWindows7()) {
+        SetConsoleOutputCP(CP_UTF8);
+        // French Help
+        std::cout << "[Options]\n"
+                  << "Exécution en mode silencieux:\n\t/quiet ou -quiet\n"
+                  << "Exporter la sortie au format JSON:\n\t/json ou -json\n"
+                  << "Répertoire de destination (par defaut: répertoire courant ):\n\t/output [destination] ou -output [destination]\n"
+                  << "Mode verbeux:\n\t/debug ou -debug" << std::endl;
     } else {
         // English Help
         std::cout << "[Options]\n"
@@ -81,7 +80,8 @@ void PrintHelp() {
 }
 
 void PrintReport(std::vector<EmotetProcess> emotet_processes) {
-    if (GetUserDefaultLangID() == LANG_ID_JP) {
+    if (GetUserDefaultLangID() == LANG_ID_JP && !IsWindows7()) {
+        SetConsoleOutputCP(CP_UTF8);
         // Japanese Report
         if (emotet_processes.size() > 0) {
             std::cout.imbue(std::locale(""));
@@ -98,6 +98,25 @@ void PrintReport(std::vector<EmotetProcess> emotet_processes) {
                       << std::endl;
         } else {
             std::cout << "Emotetは検知されませんでした。\n"
+                      << std::endl;
+        }
+    } else if (GetUserDefaultLangID() == LANG_ID_FR && !IsWindows7()) {
+        SetConsoleOutputCP(CP_UTF8);
+        // French Report
+        if (emotet_processes.size() > 0) {
+            for (unsigned int i = 0; i < emotet_processes.size(); ++i) {
+                std::cout << "[!!] Emotet"
+                          << "\n"
+                          << "     Nom du processus: " << emotet_processes[i].process_name << "\n"
+                          << "     PID             : " << emotet_processes[i].pid << "\n"
+                          << "     Emplacement     : " << emotet_processes[i].image_path << std::endl;
+            }
+            std::cout << LINE_DELIMITER << std::endl;
+            std::cout << "Emotet a été détecté.\n"
+                      << "Veuillez supprimer le(s) fichier(s) détecté(s).\n"
+                      << std::endl;
+        } else {
+            std::cout << "Aucune détection.\n"
                       << std::endl;
         }
     } else {
@@ -151,7 +170,7 @@ void WriteReport(std::vector<EmotetProcess> emotet_processes, bool is_quiet, std
 
     std::ofstream outputfile(filename.c_str());
 
-    if (GetUserDefaultLangID() == LANG_ID_JP) {
+    if (GetUserDefaultLangID() == LANG_ID_JP && !IsWindows7()) {
         // Japanese Report
         outputfile << "[EmoCheck v" << EMOCHECK_VERSION << "]" << std::endl;
         outputfile << "プログラム実行時刻: " << time_iso8601 << std::endl;
@@ -164,7 +183,8 @@ void WriteReport(std::vector<EmotetProcess> emotet_processes, bool is_quiet, std
                 outputfile << "[詳細]\n"
                            << "     プロセス名    : " << emotet_processes[i].process_name << "\n"
                            << "     プロセスID    : " << emotet_processes[i].pid << "\n"
-                           << "     イメージパス  : " << emotet_processes[i].image_path << std::endl;
+                           << "     イメージパス  : " << emotet_processes[i].image_path << "\n"
+                           << "     レジストリキー: " << emotet_processes[i].run_key << std::endl;
             }
             outputfile << LINE_DELIMITER << std::endl;
             outputfile << "イメージパスの実行ファイルを隔離/削除してください。" << std::endl;
@@ -181,6 +201,34 @@ void WriteReport(std::vector<EmotetProcess> emotet_processes, bool is_quiet, std
             std::cout << "ツールのご利用ありがとうございました。\n"
                       << std::endl;
         }
+    } else if (GetUserDefaultLangID() == LANG_ID_FR && !IsWindows7()) {
+        // French Report
+        outputfile << "[EmoCheck v" << EMOCHECK_VERSION << "]" << std::endl;
+        outputfile << "Temps d'éxécution: " << time_iso8601 << std::endl;
+        outputfile << LINE_DELIMITER << std::endl;
+        if (emotet_processes.size() > 0) {
+            outputfile << "[Résultat] \nEmotet détecté.\n"
+                       << std::endl;
+            for (unsigned int i = 0; i < emotet_processes.size(); ++i) {
+                outputfile << "[Processus Emotet] \n"
+                           << "     Nom du processus: " << emotet_processes[i].process_name << "\n"
+                           << "     PID             : " << emotet_processes[i].pid << "\n"
+                           << "     Emplacement     : " << emotet_processes[i].image_path << "\n"
+                           << "     Clé de registre : " << emotet_processes[i].run_key << std::endl;
+            }
+            outputfile << LINE_DELIMITER << std::endl;
+            outputfile << "Veuillez supprimer le(s) fichier(s) détecté(s)." << std::endl;
+        } else {
+            outputfile << "[Résultat] \nEmotet n'a pas été détecté." << std::endl;
+        }
+        outputfile.close();
+        if (!is_quiet) {
+            std::cout << "Le rapport a été exporté dans le fichier suivant." << std::endl;
+            std::cout << "\n\t" << filename << "\n"
+                      << std::endl;
+            std::cout << "Merci d'avoir utilisé cet outil.\n"
+                      << std::endl;
+        }
     } else {
         // English Report
         outputfile << "[EmoCheck v" << EMOCHECK_VERSION << "]" << std::endl;
@@ -193,7 +241,8 @@ void WriteReport(std::vector<EmotetProcess> emotet_processes, bool is_quiet, std
                 outputfile << "[Emotet Process] \n"
                            << "     Process Name  : " << emotet_processes[i].process_name << "\n"
                            << "     Process ID    : " << emotet_processes[i].pid << "\n"
-                           << "     Image Path    : " << emotet_processes[i].image_path << std::endl;
+                           << "     Image Path    : " << emotet_processes[i].image_path << "\n"
+                           << "     Registry Key  : " << emotet_processes[i].run_key << std::endl;
             }
             outputfile << LINE_DELIMITER << std::endl;
             outputfile << "Please remove or isolate the suspicious execution file." << std::endl;
@@ -209,19 +258,6 @@ void WriteReport(std::vector<EmotetProcess> emotet_processes, bool is_quiet, std
                       << std::endl;
         }
     }
-}
-
-std::string EscapeBackSlash(std::string s) {
-    std::string target = "\\";
-    std::string replacement = "\\\\";
-    if (!target.empty()) {
-        std::string::size_type pos = 0;
-        while ((pos = s.find(target, pos)) != std::string::npos) {
-            s.replace(pos, target.length(), replacement);
-            pos += replacement.length();
-        }
-    }
-    return s;
 }
 
 void JsonReport(std::vector<EmotetProcess> emotet_processes, bool is_quiet, std::string output_path) {
@@ -263,7 +299,8 @@ void JsonReport(std::vector<EmotetProcess> emotet_processes, bool is_quiet, std:
             outputfile << "    {\n"
                        << "      \"process_name\":\"" << emotet_processes[i].process_name << "\",\n"
                        << "      \"process_id\":\"" << emotet_processes[i].pid << "\",\n"
-                       << "      \"image_path\":\"" << EscapeBackSlash(emotet_processes[i].image_path) << "\"" << std::endl;
+                       << "      \"image_path\":\"" << EscapeBackSlash(emotet_processes[i].image_path) << "\",\n"
+                       << "      \"registry_key\":\"" << EscapeBackSlash(emotet_processes[i].run_key) << "\"" << std::endl;
             if (i == emotet_processes.size() - 1) {
                 outputfile << "    }" << std::endl;
             } else {
@@ -276,12 +313,18 @@ void JsonReport(std::vector<EmotetProcess> emotet_processes, bool is_quiet, std:
     }
     outputfile.close();
     if (!is_quiet) {
-        if (GetUserDefaultLangID() == LANG_ID_JP) {
+        if (GetUserDefaultLangID() == LANG_ID_JP && !IsWindows7()) {
             std::cout.imbue(std::locale(""));
             std::cout << "以下のファイルに結果を出力しました。" << std::endl;
             std::cout << "\n\t" << filename << "\n"
                       << std::endl;
             std::cout << "ツールのご利用ありがとうございました。\n"
+                      << std::endl;
+        } else if (GetUserDefaultLangID() == LANG_ID_FR && !IsWindows7()) {
+            std::cout << "Le rapport a été exporté dans le fichier suivant." << std::endl;
+            std::cout << "\n\t" << filename << "\n"
+                      << std::endl;
+            std::cout << "Merci d'avoir utilisé cet outil.\n"
                       << std::endl;
         } else {
             std::cout << "Report has exported to following file." << std::endl;
@@ -320,7 +363,7 @@ int main(int argc, char *argv[]) {
             if (!strcmp(param, PARAM_QUIET)) {
                 is_quiet = true;
             } else if (!strcmp(param, PARAM_DEBUG)) {
-                is_debug = true;
+                // is_debug = true;
             } else if (!strcmp(param, PARAM_JSON)) {
                 is_json = true;
             } else if (!strcmp(param, PARAM_OUTPUT)) {
@@ -348,22 +391,23 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    if (!is_quiet) {
+    if (!is_quiet)
         emocheck::PrintBanner();
-    }
+
     std::tie(status, scan_result) = emocheck::ScanEmotet(is_debug);
-    if (!is_quiet) {
+
+    if (!is_quiet)
         emocheck::PrintReport(scan_result);
-    }
+
     if (!is_debug) {
-        if (is_json) {
+        if (is_json)
             emocheck::JsonReport(scan_result, is_quiet, output_path);
-        } else {
+        else
             emocheck::WriteReport(scan_result, is_quiet, output_path);
-        }
     }
-    if (!is_quiet) {
+
+    if (!is_quiet)
         system("pause");
-    }
+
     return status;
 }

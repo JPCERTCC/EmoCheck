@@ -1,0 +1,68 @@
+name: ci
+
+on: 
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: ${{ matrix.config.name }}
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+        - {
+          name: "Emocheck x64 build",
+          pe: "emocheck_x64.exe",
+          script: ".\\build64.bat",
+          log: ".\\buildlog64.txt",
+          arch: "x64"
+        }
+        - {
+          name: "Emocheck x86 build",
+          pe: "emocheck_x86.exe",
+          script: ".\\build32.bat",
+          log: ".\\buildlog32.txt",
+          arch: "x86"
+        }
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 1
+
+    - name: Setup MSVC dev commands.
+      uses: ilammy/msvc-dev-cmd@v1
+      with:
+          arch: ${{ matrix.config.arch }}
+
+    - name: Build
+      run: |
+        ${{ matrix.config.script }}
+      shell: powershell
+      env:
+        CC: clang
+        CXX: clang++
+    
+    - name: Show build log
+      run: type ${{ matrix.config.log }}
+
+    - name: Test
+      run: |
+        .\build\emocheck.exe /quiet
+        type *emocheck.txt
+        .\build\emocheck.exe /quiet /json
+        type *emocheck.json
+      shell: powershell
+    
+    - name: Archive build results
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ matrix.config.pe }}
+        path: .\build\emocheck.exe

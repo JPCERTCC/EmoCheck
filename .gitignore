@@ -1,6 +1,13 @@
 # Based on following file
 # https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# auto-generated code
+o_src/*
+buildlog32.txt
+buildlog64.txt
+*_emocheck.txt
+*_emocheck.json
+
 # User-specific files
 *.rsuser
 *.suo
@@ -29,6 +36,10 @@ bld/
 [Ll]og/
 [Ll]ogs/
 [Bb]uild/
+
+## PE files
+*.exe
+*.dll
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/

@@ -1,14 +1,4 @@
-/*
- * LICENSE
- * Please refer to the LICENSE.txt at https://github.com/JPCERTCC/EmoCheck/
- */
-
-#include "scan_v1.hpp"
-
-#include "../utils/utils.hpp"
-
-// standard modules
-#include <string>
+#include "scan.hpp"
 
 namespace emocheck {
 
@@ -37,22 +27,22 @@ std::string SelectWordFromKeywords(std::string keywords, int ptr, int keylen) {
     return keyword;
 }
 
-std::string GenerateEmotetProcessName() {
+EmotetLoader GenerateEmotetV1ProcessName() {
     uint32_t q;
     uint32_t seed;
     int keylen;
     int mod;
     std::string keywords;
     std::string keyword;
+    EmotetLoader suspicious_file;
 
     seed = GetVolumeSerialNumber();
 
-    keywords =
-        "duck,mfidl,targets,ptr,khmer,purge,metrics,acc,inet,msra,symbol,driver,"
-        "sidebar,restore,msg,volume,cards,shext,query,roam,etw,mexico,basic,url,"
-        "createa,blb,pal,cors,send,devices,radio,bid,format,thrd,taskmgr,timeout,"
-        "vmd,ctl,bta,shlp,avi,exce,dbt,pfx,rtp,edge,mult,clr,wmistr,ellipse,vol,"
-        "cyan,ses,guid,wce,wmp,dvb,elem,channel,space,digital,pdeft,violet,thunk";
+    keywords = "duck,mfidl,targets,ptr,khmer,purge,metrics,acc,inet,msra,symbol,driver,";
+    keywords += "sidebar,restore,msg,volume,cards,shext,query,roam,etw,mexico,basic,url,";
+    keywords += "createa,blb,pal,cors,send,devices,radio,bid,format,thrd,taskmgr,timeout,";
+    keywords += "vmd,ctl,bta,shlp,avi,exce,dbt,pfx,rtp,edge,mult,clr,wmistr,ellipse,vol,";
+    keywords += "cyan,ses,guid,wce,wmp,dvb,elem,channel,space,digital,pdeft,violet,thunk";
 
     keylen = int(keywords.length());
 
@@ -65,8 +55,10 @@ std::string GenerateEmotetProcessName() {
     seed = 0xFFFFFFFF - q;
     mod = seed % keylen;
     keyword += SelectWordFromKeywords(keywords, mod, keylen);
+    suspicious_file.filename = keyword + ".exe";
+    suspicious_file.version = 1;
 
-    return keyword;
+    return suspicious_file;
 }
 
 }  // namespace emocheck
