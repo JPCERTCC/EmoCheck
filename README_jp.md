@@ -128,7 +128,3 @@ Emotetが検知された場合、以下のようなレポートが作成され�
 
 - Windows 10 1809 64bit 日本語版
 - Microsoft Visual Studio Community 2017
-
-### ソースコード
-
-v1.0以降は公開していません。

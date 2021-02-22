@@ -141,7 +141,3 @@ Windows 7 does not support UTF-8 output in the Command Prompt.
 
 - Windows 10 1809 64bit Japanese Edition
 - Microsoft Visual Studio Community 2017
-
-### Source code
-
-Not published from v1.0.
