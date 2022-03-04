@@ -124,12 +124,15 @@ The report will be exported to the following path.
 - (Jan. 27, 2021) v2.0.0
   - update detecting method
   - Added French language support
+- (Mar. 4, 2022) v2.1.0
+  - update detecting method
 
 ## Notes
 
 ### Tested environments
 
-- Windows 10 1809 64bit Japanese Edition
+- Windows 11 21H2 64bit Japanese Edition
+- Windows 10 21H2 64bit Japanese Edition
 - Windows 8.1 64bit Japanese Edition
 - ~~Windows 7 SP1 32bit Japanese Edition~~
 - ~~Windows 7 SP1 64bit Japanese Edition~~
