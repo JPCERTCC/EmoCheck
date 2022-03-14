@@ -15,16 +15,6 @@ Emotet detection tool for Windows OS.
 
 Please download from the [Releases](https://github.com/JPCERTCC/EmoCheck/releases) page.
 
-Latest hash:  
-
-> emocheck_v2.0_x86.exe  
->   MD5   : a623ec55128763ef3ee95c1ce18424dc  
->   SHA256: 369595afdb67bd54b4d0b5010cece75d80d660d7c7caaa49fdffa2e27f0274a0
-
-> emocheck_v2.0_x64.exe  
->   MD5   : 25bb801e219f82bad6f53d94edfc0ff6  
->   SHA256: e830d6b7f3b82747fc565d6eb7c12cf8b82454f1f735bde3e73d6f73a5819462
-
 ## Command options
 
 (since v0.0.2)  
@@ -126,6 +116,8 @@ The report will be exported to the following path.
   - Added French language support
 - (Mar. 4, 2022) v2.1.0
   - update detecting method
+- (Mar. 14, 2022) v2.1.1
+  - Fixed a crash bug when executing with SYSTEM privileges
 
 ## Notes
 
@@ -144,3 +136,7 @@ Windows 7 does not support UTF-8 output in the Command Prompt.
 
 - Windows 10 1809 64bit Japanese Edition
 - Microsoft Visual Studio Community 2017
+
+### Source code
+
+Not published from v2.1.

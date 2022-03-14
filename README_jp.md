@@ -17,16 +17,6 @@ Windows OS 用 Emotet 検知ツール
 
  [Releases](https://github.com/JPCERTCC/EmoCheck/releases)
 
-なお、ファイルのハッシュ値は以下の通りです。
-
-> emocheck_v2.0_x86.exe  
->   MD5   : a623ec55128763ef3ee95c1ce18424dc  
->   SHA256: 369595afdb67bd54b4d0b5010cece75d80d660d7c7caaa49fdffa2e27f0274a0
-
-> emocheck_v2.0_x64.exe  
->   MD5   : 25bb801e219f82bad6f53d94edfc0ff6  
->   SHA256: e830d6b7f3b82747fc565d6eb7c12cf8b82454f1f735bde3e73d6f73a5819462
-
 ## コマンドオプション
 
 (v0.0.2 追加)  
@@ -116,6 +106,8 @@ Emotetが検知された場合、以下のようなレポートが作成され�
   - フランス語サポートを追加
 - (2022/03/04) v2.1.0
   - 検知手法の追加
+- (2022/03/14) v2.1.1
+  - システム権限で実行した際に、正しくチェックできないバグを修正
 
 ## その他
 
@@ -131,3 +123,7 @@ Emotetが検知された場合、以下のようなレポートが作成され�
 
 - Windows 10 1809 64bit 日本語版
 - Microsoft Visual Studio Community 2017
+
+### ソースコード
+
+v2.1以降は公開していません。
