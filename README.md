@@ -118,6 +118,8 @@ The report will be exported to the following path.
   - update detecting method
 - (Mar. 14, 2022) v2.1.1
   - Fixed a crash bug when executing with SYSTEM privileges
+- (Apr. 22, 2022) v2.2.0
+  - update detecting method
 
 ## Notes
 
