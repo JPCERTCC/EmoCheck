@@ -120,6 +120,12 @@ The report will be exported to the following path.
   - Fixed a crash bug when executing with SYSTEM privileges
 - (Apr. 22, 2022) v2.2.0
   - update detecting method
+- (May. 20, 2022) v2.3.0
+  - update detecting method
+
+## License
+
+Please download from the [LICENSE](https://github.com/JPCERTCC/EmoCheck/blob/master/LICENSE.txt) page.
 
 ## Notes
 
