@@ -125,7 +125,7 @@ The report will be exported to the following path.
 
 ## License
 
-Please download from the [LICENSE](https://github.com/JPCERTCC/EmoCheck/blob/master/LICENSE.txt) page.
+Please read the [LICENSE](https://github.com/JPCERTCC/EmoCheck/blob/master/LICENSE.txt) page.
 
 ## Notes
 
