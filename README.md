@@ -122,6 +122,8 @@ The report will be exported to the following path.
   - update detecting method
 - (May. 20, 2022) v2.3.0
   - update detecting method
+- (May. 24, 2022) v2.3.1
+  - fixed a detection pattern
 
 ## License
 
