@@ -126,6 +126,8 @@ The report will be exported to the following path.
   - fixed a detection pattern
 - (May. 27, 2022) v2.3.2
   - fixed a detection pattern
+- (Mar. 19, 2023) v2.4.0
+  - update detecting method
 
 ## License
 
