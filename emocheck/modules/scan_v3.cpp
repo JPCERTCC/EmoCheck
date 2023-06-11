@@ -19,7 +19,7 @@ std::unordered_set<std::string> GenerateKeyWordFromDirectory(std::string path, s
     do {
         if (win32_find_data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
             std::string directory_name = win32_find_data.cFileName;
-            if (directory_name != "." & directory_name != "..") {
+            if (directory_name != "." && directory_name != "..") {
                 // recursive process will come here
             }
         } else {
